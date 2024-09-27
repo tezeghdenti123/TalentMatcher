@@ -1,12 +1,16 @@
 import time
 class MySqlService:
     def getAllOpportunity(self,mysql):
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM opportunity")
-        data = cur.fetchall()
-        print("Selected successfully! ****************************************")
-        cur.close()
-        return data
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT * FROM opportunity")
+            data = cur.fetchall()
+            cur.close()
+            return data
+        except Exception as e:
+            # Handle any other exceptions
+            print(f"An error occurred: {str(e)}")
+            return None  # or handle it as per your application's requirements
         
     def saveOpportunity(self, mysql, title, location, durée, sector, description, link):
         query = """

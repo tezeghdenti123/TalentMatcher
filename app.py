@@ -3,22 +3,16 @@ import os
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 import threading
-from Services.ScrapingService import ScrapingService
+from ScrapingModule.ScrapingService import ScrapingService
 from flair.models import SequenceTagger
-import nltk
 from nltk.corpus import stopwords
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime
 
 def createApp():
     app=app=Flask(__name__)
-    CORS(app)  # This will enable CORS for all routes
-
-    UPLOAD_FOLDER = 'static/files'
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    CORS(app)  # This will enable CORS for all route
     
     # Ensure the upload folder exists
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.config['SQLALCHEMY_DATABASE_URI'] = ':///User.mysql'
     return app
 

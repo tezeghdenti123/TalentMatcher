@@ -10,7 +10,23 @@ class Consultant:
         self.experienceList=experienceList
         self.title=title
 
-
+    
+    
+    @classmethod
+    def from_dict(cls, data):
+        """Create a Consultant instance from a dictionary."""
+        return cls(
+            name=data['name'],
+            title=data['title'],
+            email=data['email'],
+            linkedIn=data['linkedIn'],
+            phoneNumber=data['phoneNumber'],
+            languages=data.get('languages', []),
+            listSkills=data.get('listSkills', []),
+            educationList=data.get('educationList', []),
+            experienceList=data.get('experienceList', [])
+        )
+    
     def add_skill(self, skill):
         self.listSkills.append(skill)
     
