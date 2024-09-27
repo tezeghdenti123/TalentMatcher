@@ -19,7 +19,7 @@ public class Affectation {
     private Consultant consultant;
     @ManyToOne
     @JoinColumn(name = "projet_id")
-    @JsonBackReference
+    @JsonBackReference(value = "pro_aff")
     private Projet projet;
 
     public Projet getProjet() {

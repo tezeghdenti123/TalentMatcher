@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bezkoder.springjwt.models.User;
-import com.bezkoder.springjwt.repository.UserRepository;
+import com.bezkoder.springjwt.repositories.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

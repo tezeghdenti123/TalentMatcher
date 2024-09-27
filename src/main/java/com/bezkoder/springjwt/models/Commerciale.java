@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 public class Commerciale extends Consultant{
-    @OneToMany(mappedBy = "commerciale", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "commerciale", cascade = CascadeType.PERSIST, orphanRemoval = false)
     @JsonManagedReference(value = "cons_com")
     private List<Consultant> consultantList;
 

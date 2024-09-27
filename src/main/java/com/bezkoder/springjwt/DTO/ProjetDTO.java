@@ -1,41 +1,45 @@
-package com.bezkoder.springjwt.models;
+package com.bezkoder.springjwt.DTO;
 
+import com.bezkoder.springjwt.models.Affectation;
+import com.bezkoder.springjwt.models.Client;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-public class Projet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProjetDTO {
     private Long id;
     private LocalDate date_debut;
     private LocalDate date_fin;
     private String titre;
     private Byte is_checked;
-    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference(value = "pro_aff")
     private List<Affectation> affectationList;
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    @JsonBackReference
-    private Client client;
+    private Long clientId;
 
     public Long getId() {
         return id;
     }
 
-    public Client getClient() {
-        return client;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public LocalDate getDate_fin() {
+        return date_fin;
     }
 
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
 
     public List<Affectation> getAffectationList() {
         return affectationList;
@@ -61,10 +65,6 @@ public class Projet {
         this.titre = titre;
     }
 
-    public LocalDate getDate_fin() {
-        return date_fin;
-    }
-
     public void setDate_fin(LocalDate date_fin) {
         this.date_fin = date_fin;
     }
@@ -75,9 +75,5 @@ public class Projet {
 
     public void setDate_debut(LocalDate date_debut) {
         this.date_debut = date_debut;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

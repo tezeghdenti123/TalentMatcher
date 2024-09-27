@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class GestionnaireRH extends Consultant{
-    @OneToMany(mappedBy = "gestionnaireRH", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "gestionnaireRH", cascade = CascadeType.PERSIST, orphanRemoval = false)
     @JsonManagedReference(value = "cons_gest")
     private List<Consultant> consultantList;
 

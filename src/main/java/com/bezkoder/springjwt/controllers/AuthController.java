@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.bezkoder.springjwt.models.*;
-import com.bezkoder.springjwt.repository.*;
+import com.bezkoder.springjwt.repositories.*;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ import com.bezkoder.springjwt.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
@@ -75,7 +75,7 @@ public class AuthController {
   }
 
 
-  @PostMapping("/saveAdmin")
+  @PostMapping("/admin")
   public ResponseEntity<?> saveAdministrateur(@Valid @RequestBody UserRequest userRequest) {
     if (userRepository.existsByUsername(userRequest.getUsername())) {
       return ResponseEntity
@@ -108,7 +108,7 @@ public class AuthController {
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 
-  @PostMapping("/saveCommerciale")
+  @PostMapping("/commerciale")
   public ResponseEntity<?> saveCommerciale(@Valid @RequestBody Commerciale commerciale) {
     if (userRepository.existsByUsername(commerciale.getUsername())) {
       return ResponseEntity
@@ -141,7 +141,7 @@ public class AuthController {
     commercialeRepository.save(commerciale);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
-  @PostMapping("/saveDev")
+  @PostMapping("/developper")
   public ResponseEntity<?> saveDevelopper(@Valid @RequestBody Developper developper) {
     if (userRepository.existsByUsername(developper.getUsername())) {
       return ResponseEntity
@@ -174,7 +174,7 @@ public class AuthController {
     developperRepository.save(developper);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
-  @PostMapping("/saveRH")
+  @PostMapping("/gestionnaireRH")
   public ResponseEntity<?> saveGestionnaire(@Valid @RequestBody GestionnaireRH gestionnaireRH) {
     if (userRepository.existsByUsername(gestionnaireRH.getUsername())) {
       return ResponseEntity
